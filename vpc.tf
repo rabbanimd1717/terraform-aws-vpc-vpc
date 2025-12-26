@@ -70,30 +70,30 @@ resource "aws_subnet" "main" {
     )
 }
 
-### database subnets groups ###
-# resource "aws_db_subnet_group" "database_subnet_groups" {
-#   name       = "${local.resource_name}"
-#   subnet_ids = aws_subnet.main[*].id
-
-#   tags = merge(
-#       var.common_tags,
-#       var.database_subnet_group_tags,{
-#           Name = "${local.resource_name}"
-#       }
-#     )
-# }
-resource "aws_db_subnet_group" "default" {
+## database subnets groups ###
+resource "aws_db_subnet_group" "database_subnet_groups" {
   name       = "${local.resource_name}"
   subnet_ids = aws_subnet.main[*].id
 
   tags = merge(
-    var.common_tags,
-    var.database_subnet_group_tags,
-    {
-        Name = "${local.resource_name}"
-    }
-  )
+      var.common_tags,
+      var.database_subnet_group_tags,{
+          Name = "${local.resource_name}"
+      }
+    )
 }
+# resource "aws_db_subnet_group" "default" {
+#   name       = "${local.resource_name}"
+#   subnet_ids = aws_subnet.main[*].id
+
+#   tags = merge(
+#     var.common_tags,
+#     var.database_subnet_group_tags,
+#     {
+#         Name = "${local.resource_name}"
+#     }
+#   )
+# }
 
 
 
